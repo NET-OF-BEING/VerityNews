@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getAllSlugs, getPostBySlug } from "@/lib/posts";
+import { getAllSlugs, getPostBySlug, getRelatedPosts } from "@/lib/posts";
 import ArticleLayout from "@/components/ArticleLayout";
 import type { Metadata } from "next";
 
@@ -103,9 +104,42 @@ export default async function PostPage({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const related = getRelatedPosts(slug, 3);
+
   return (
-    <ArticleLayout meta={post.meta}>
-      <MDXRemote source={post.content} components={components} />
-    </ArticleLayout>
+    <>
+      <ArticleLayout meta={post.meta}>
+        <MDXRemote source={post.content} components={components} />
+      </ArticleLayout>
+
+      {/* More Investigations */}
+      {related.length > 0 && (
+        <section className="mx-auto max-w-3xl px-6 pb-20">
+          <div className="mb-6 flex items-center gap-4">
+            <h2 className="font-mono text-[10px] uppercase tracking-[3px] text-dim">
+              More Investigations
+            </h2>
+            <div className="h-[1px] flex-1 bg-border" />
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {related.map((r) => (
+              <Link
+                key={r.slug}
+                href={`/posts/${r.slug}`}
+                className="group border border-border bg-navy p-5 transition-colors hover:border-blue/30"
+              >
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[2px] text-blue">
+                  {r.category}
+                </div>
+                <h3 className="mb-2 font-serif text-sm font-bold leading-snug text-light transition-colors group-hover:text-blue">
+                  {r.title}
+                </h3>
+                <p className="text-xs text-dim">{r.readingTime}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+    </>
   );
 }

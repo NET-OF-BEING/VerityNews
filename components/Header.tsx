@@ -32,19 +32,23 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
-          <Link
-            href="/"
-            className="font-mono text-xs uppercase tracking-[2px] text-muted transition-colors hover:text-blue"
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="font-mono text-xs uppercase tracking-[2px] text-muted transition-colors hover:text-blue"
-          >
-            About
-          </Link>
+        <nav className="hidden items-center gap-6 md:flex">
+          {[
+            { href: "/", label: "Home" },
+            { href: "/topics", label: "Topics" },
+            { href: "/archive", label: "Archive" },
+            { href: "/tips", label: "Tip Line" },
+            { href: "/team", label: "Team" },
+            { href: "/search", label: "Search" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="font-mono text-xs uppercase tracking-[2px] text-muted transition-colors hover:text-blue"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile hamburger */}
@@ -75,20 +79,24 @@ export default function Header() {
       {menuOpen && (
         <nav className="border-t border-border px-6 py-4 md:hidden">
           <div className="flex flex-col gap-4">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="font-mono text-sm uppercase tracking-[2px] text-muted"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setMenuOpen(false)}
-              className="font-mono text-sm uppercase tracking-[2px] text-muted"
-            >
-              About
-            </Link>
+            {[
+              { href: "/", label: "Home" },
+              { href: "/topics", label: "Topics" },
+              { href: "/archive", label: "Archive" },
+              { href: "/tips", label: "Tip Line" },
+              { href: "/team", label: "Team" },
+              { href: "/search", label: "Search" },
+              { href: "/about", label: "About" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-mono text-sm uppercase tracking-[2px] text-muted"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </nav>
       )}
