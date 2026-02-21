@@ -1,0 +1,4 @@
+1:"$Sreact.fragment"
+2:I[69823,["/VerityNews/_next/static/chunks/492e3afde9dff010.js","/VerityNews/_next/static/chunks/4a1ed539d87b1edc.js"],"default"]
+3:I[95565,["/VerityNews/_next/static/chunks/492e3afde9dff010.js","/VerityNews/_next/static/chunks/4a1ed539d87b1edc.js"],"default"]
+0:{"buildId":"DnYIaXdKRrfueQ2FiILpD","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
