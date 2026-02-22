@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import ArticleCard from "@/components/ArticleCard";
-import Newsletter from "@/components/Newsletter";
 import { getAllPosts, getAllCategories } from "@/lib/posts";
 
 export default function Home() {
@@ -70,24 +69,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-      {/* Newsletter */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="border border-border bg-navy p-8 md:p-12">
-          <div className="grid items-center gap-6 md:grid-cols-2">
-            <div>
-              <h2 className="mb-2 font-serif text-xl font-bold text-light">
-                Follow the investigations
-              </h2>
-              <p className="text-sm text-muted">
-                Get new articles delivered to your inbox. No spam, no ads — just
-                original investigative reporting.
-              </p>
-            </div>
-            <Newsletter />
-          </div>
-        </div>
-      </section>
 
       {/* Tip Line CTA */}
       <section className="mx-auto max-w-6xl px-6 pb-24">
