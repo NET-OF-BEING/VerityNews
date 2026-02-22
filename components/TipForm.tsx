@@ -14,6 +14,8 @@ const categories = [
 
 export default function TipForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   if (submitted) {
     return (
@@ -30,12 +32,38 @@ export default function TipForm() {
     );
   }
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch("https://formspree.io/f/mvzbwedo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          ...data,
+          _subject: `VerityNews Tip: ${data.subject || "No subject"}`,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
+      onSubmit={handleSubmit}
       className="space-y-6"
     >
       {/* Category */}
@@ -117,11 +145,14 @@ export default function TipForm() {
         />
       </div>
 
+      {error && <p className="text-sm text-red-400">{error}</p>}
+
       <button
         type="submit"
-        className="w-full border border-blue bg-blue/10 px-6 py-4 font-mono text-[12px] uppercase tracking-[2px] text-blue transition-colors hover:bg-blue hover:text-white"
+        disabled={loading}
+        className="w-full border border-blue bg-blue/10 px-6 py-4 font-mono text-[12px] uppercase tracking-[2px] text-blue transition-colors hover:bg-blue hover:text-white disabled:opacity-50"
       >
-        Submit Tip Securely
+        {loading ? "Submitting..." : "Submit Tip Securely"}
       </button>
     </form>
   );
