@@ -28,7 +28,7 @@ export default function SearchClient({ posts }: SearchClientProps) {
       {/* Search input */}
       <div className="relative mb-10">
         <svg
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-dim"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan/40"
           width="18"
           height="18"
           viewBox="0 0 24 24"
@@ -47,15 +47,15 @@ export default function SearchClient({ posts }: SearchClientProps) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search by title, topic, tag, or keyword..."
           autoFocus
-          className="w-full border border-border bg-navy py-4 pl-12 pr-4 font-body text-base text-light placeholder-dim outline-none transition-colors focus:border-blue"
+          className="w-full border border-border bg-surface py-4 pl-12 pr-4 text-base text-light placeholder-dim outline-none transition-all focus:border-cyan focus:shadow-[0_0_20px_rgba(0,240,255,0.1)]"
         />
       </div>
 
-      {/* Results */}
+      {/* Results count */}
       {q && (
-        <div className="mb-4 font-mono text-[11px] text-dim">
-          {results.length} result{results.length !== 1 ? "s" : ""} for &ldquo;
-          {query}&rdquo;
+        <div className="mb-4 font-mono text-[10px] tracking-wider text-dim">
+          <span className="text-cyan/50">&gt; </span>
+          {results.length} result{results.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;
         </div>
       )}
 
@@ -64,17 +64,17 @@ export default function SearchClient({ posts }: SearchClientProps) {
           <Link
             key={post.slug}
             href={`/posts/${post.slug}`}
-            className="group block border border-border bg-navy p-6 transition-colors hover:border-blue/30"
+            className="group block card-futuristic p-6"
           >
             <div className="mb-2 flex items-center gap-3">
-              <span className="font-mono text-[10px] uppercase tracking-[3px] text-blue">
+              <span className="tag-cyber text-[8px]">
                 {post.category}
               </span>
-              <span className="font-mono text-[11px] text-dim">
+              <span className="font-mono text-[10px] tracking-wider text-dim">
                 {post.date}
               </span>
             </div>
-            <h3 className="mb-2 font-serif text-lg font-bold text-light transition-colors group-hover:text-blue">
+            <h3 className="mb-2 font-heading text-lg font-bold text-light transition-colors group-hover:text-cyan">
               {post.title}
             </h3>
             <p className="text-sm leading-relaxed text-muted line-clamp-2">
@@ -85,7 +85,7 @@ export default function SearchClient({ posts }: SearchClientProps) {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-navy-light px-2 py-0.5 font-mono text-[10px] text-dim"
+                    className="bg-surface-light px-2 py-0.5 font-mono text-[9px] text-dim"
                   >
                     {tag}
                   </span>
@@ -97,13 +97,13 @@ export default function SearchClient({ posts }: SearchClientProps) {
       </div>
 
       {q && results.length === 0 && (
-        <div className="border border-border bg-navy p-10 text-center">
-          <p className="mb-2 font-serif text-lg font-bold text-light">
+        <div className="card-futuristic p-10 text-center">
+          <p className="mb-2 font-heading text-lg font-bold text-light">
             No results found
           </p>
           <p className="text-sm text-muted">
             Try different keywords or browse by{" "}
-            <Link href="/topics" className="text-blue hover:underline">
+            <Link href="/topics" className="text-cyan hover:underline">
               topic
             </Link>
             .
@@ -112,8 +112,9 @@ export default function SearchClient({ posts }: SearchClientProps) {
       )}
 
       {!q && (
-        <div className="border border-border bg-navy p-10 text-center">
+        <div className="card-futuristic p-10 text-center">
           <p className="text-sm text-muted">
+            <span className="text-cyan/40 font-mono">&gt; </span>
             Start typing to search across all investigations.
           </p>
         </div>

@@ -10,8 +10,8 @@ export default function Newsletter() {
 
   if (submitted) {
     return (
-      <div className="border border-blue/30 bg-blue-dim p-8 text-center">
-        <div className="mb-2 font-serif text-lg font-bold text-light">
+      <div className="card-futuristic border-cyan/20 p-8 text-center">
+        <div className="mb-2 font-heading text-lg font-bold text-light">
           You&apos;re on the list.
         </div>
         <p className="text-sm text-muted">
@@ -58,14 +58,14 @@ export default function Newsletter() {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="your@email.com"
-          className="flex-1 border border-border bg-navy px-4 py-3 font-body text-sm text-light placeholder-dim outline-none transition-colors focus:border-blue"
+          className="flex-1 border border-border bg-surface px-4 py-3 font-body text-sm text-light placeholder-dim outline-none transition-all focus:border-cyan focus:shadow-[0_0_15px_rgba(0,240,255,0.1)]"
         />
-        {error && <p className="text-xs text-red-400">{error}</p>}
+        {error && <p className="text-xs text-red">{error}</p>}
       </div>
       <button
         type="submit"
         disabled={loading}
-        className="shrink-0 border border-blue bg-blue/10 px-6 py-3 font-mono text-[11px] uppercase tracking-[2px] text-blue transition-colors hover:bg-blue hover:text-white disabled:opacity-50"
+        className="shrink-0 border border-cyan px-6 py-3 font-mono text-[10px] uppercase tracking-[2px] text-cyan transition-all hover:bg-cyan hover:text-dark hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] disabled:opacity-50"
       >
         {loading ? "Sending..." : "Subscribe"}
       </button>

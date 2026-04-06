@@ -9,11 +9,15 @@ export const metadata: Metadata = {
 
 export default function TipsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20">
-      <div className="mb-4 font-mono text-[10px] uppercase tracking-[3px] text-blue">
-        Tip Line
+    <div className="hex-bg mx-auto max-w-3xl px-6 py-20">
+      <div className="mb-4 flex items-center gap-2">
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-red" />
+        </span>
+        <span className="tag-cyber border-red/20 text-red">Secure Channel</span>
       </div>
-      <h1 className="mb-6 font-serif text-[clamp(2rem,4.5vw,3.2rem)] font-black leading-[1.1] text-light">
+      <h1 className="mb-6 font-heading text-[clamp(2rem,4.5vw,3rem)] font-bold leading-[1.1] text-light">
         Submit a Tip
       </h1>
       <p className="mb-4 max-w-xl text-base leading-relaxed text-muted">
@@ -27,10 +31,9 @@ export default function TipsPage() {
 
       <TipForm />
 
-      {/* Privacy notice */}
       <div className="mt-12 border-t border-border pt-8">
-        <h3 className="mb-3 font-mono text-[10px] uppercase tracking-[3px] text-dim">
-          Privacy & Security
+        <h3 className="mb-3 font-mono text-[9px] uppercase tracking-[3px] text-cyan/50">
+          // Privacy & Security
         </h3>
         <div className="space-y-3 text-sm leading-relaxed text-muted">
           <p>
@@ -44,7 +47,7 @@ export default function TipsPage() {
               href="https://proton.me/mail"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue underline decoration-blue/30 hover:decoration-blue"
+              className="text-cyan underline decoration-cyan/30 hover:decoration-cyan"
             >
               ProtonMail
             </a>{" "}

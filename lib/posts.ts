@@ -15,6 +15,7 @@ export interface PostMeta {
   readingTime: string;
   featured?: boolean;
   ogImage?: string;
+  image?: string;
   author?: string;
 }
 
@@ -35,6 +36,7 @@ function parsePost(filename: string): PostMeta {
     readingTime: stats.text,
     featured: data.featured || false,
     ogImage: data.ogImage,
+    image: data.image,
     author: data.author || "VerityNews",
   };
 }
@@ -104,6 +106,7 @@ export function getPostBySlug(slug: string) {
       readingTime: stats.text,
       featured: data.featured || false,
       ogImage: data.ogImage,
+      image: data.image,
       author: data.author || "VerityNews",
     } as PostMeta,
     content,

@@ -7,44 +7,39 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-navy-dark/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="sticky top-0 z-50 border-b border-border bg-dark/90 backdrop-blur-xl">
+      {/* Top accent line */}
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-cyan/50 to-transparent" />
+
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <svg width="36" height="36" viewBox="0 0 180 180" fill="none">
-            <polygon points="0,10 46,10 92,150 46,150" fill="#4ea3ff" />
-            <polygon points="58,28 120,10 72,102" fill="#e6eef7" />
-            <g stroke="#4ea3ff" strokeWidth="6" fill="none" strokeLinecap="round">
-              <line x1="70" y1="106" x2="140" y2="106" />
-              <line x1="88" y1="130" x2="160" y2="130" />
-              <line x1="102" y1="82" x2="152" y2="58" />
-            </g>
-            <g fill="#4ea3ff">
-              <circle cx="140" cy="106" r="6" />
-              <circle cx="160" cy="130" r="6" />
-              <circle cx="152" cy="58" r="6" />
-            </g>
-          </svg>
-          <span className="font-serif text-xl font-bold tracking-tight">
-            <span className="text-light">Verity</span>
-            <span className="text-blue">News</span>
-          </span>
+        <Link href="/" className="group flex items-center gap-3">
+          {/* Geometric logo mark */}
+          <div className="relative flex h-9 w-9 items-center justify-center">
+            <div className="absolute inset-0 border border-cyan/30 rotate-45 transition-all duration-300 group-hover:rotate-[55deg] group-hover:border-cyan/60" />
+            <div className="absolute inset-1 border border-cyan/15 rotate-45 transition-all duration-300 group-hover:rotate-[35deg]" />
+            <span className="relative font-mono text-sm font-bold text-cyan">V</span>
+          </div>
+          <div className="font-heading text-lg font-bold tracking-tight">
+            <span className="text-light">VERITY</span>
+            <span className="text-cyan">NEWS</span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {[
             { href: "/", label: "Home" },
             { href: "/topics", label: "Topics" },
             { href: "/archive", label: "Archive" },
             { href: "/tips", label: "Tip Line" },
-            { href: "/team", label: "Team" },
+            { href: "/about", label: "About" },
             { href: "/search", label: "Search" },
           ].map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="font-mono text-xs uppercase tracking-[2px] text-muted transition-colors hover:text-blue"
+              className="relative px-3 py-2 font-mono text-[10px] uppercase tracking-[2.5px] text-muted transition-colors hover:text-cyan"
             >
               {link.label}
             </Link>
@@ -54,22 +49,22 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex flex-col gap-1.5 md:hidden"
+          className="relative flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
           aria-label="Toggle menu"
         >
           <span
-            className={`block h-0.5 w-6 bg-light transition-transform ${
-              menuOpen ? "translate-y-2 rotate-45" : ""
+            className={`block h-[1px] w-5 bg-cyan transition-all duration-300 ${
+              menuOpen ? "translate-y-[7px] rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-6 bg-light transition-opacity ${
-              menuOpen ? "opacity-0" : ""
+            className={`block h-[1px] w-5 bg-cyan transition-all duration-300 ${
+              menuOpen ? "opacity-0 scale-x-0" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-6 bg-light transition-transform ${
-              menuOpen ? "-translate-y-2 -rotate-45" : ""
+            className={`block h-[1px] w-5 bg-cyan transition-all duration-300 ${
+              menuOpen ? "-translate-y-[7px] -rotate-45" : ""
             }`}
           />
         </button>
@@ -77,23 +72,24 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="border-t border-border px-6 py-4 md:hidden">
-          <div className="flex flex-col gap-4">
+        <nav className="border-t border-border bg-surface/95 backdrop-blur-xl px-6 py-6 md:hidden">
+          <div className="flex flex-col gap-1">
             {[
               { href: "/", label: "Home" },
               { href: "/topics", label: "Topics" },
               { href: "/archive", label: "Archive" },
               { href: "/tips", label: "Tip Line" },
+              { href: "/about", label: "About" },
               { href: "/team", label: "Team" },
               { href: "/search", label: "Search" },
-              { href: "/about", label: "About" },
             ].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="font-mono text-sm uppercase tracking-[2px] text-muted"
+                className="border-b border-border/50 py-3 font-mono text-xs uppercase tracking-[3px] text-muted transition-colors hover:text-cyan"
               >
+                <span className="mr-2 text-cyan/40">//</span>
                 {link.label}
               </Link>
             ))}

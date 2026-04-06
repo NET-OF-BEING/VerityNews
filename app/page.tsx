@@ -13,18 +13,17 @@ export default function Home() {
     <>
       <Hero />
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="hex-bg mx-auto max-w-7xl px-6 pb-24">
         {/* Section label */}
-        <div className="mb-8 flex items-center gap-4">
-          <h2 className="font-mono text-[10px] uppercase tracking-[3px] text-dim">
-            Latest Investigations
+        <div className="section-label">
+          <h2 className="font-mono text-[9px] uppercase tracking-[4px] text-cyan/60">
+            <span className="text-cyan/30">// </span>Latest Investigations
           </h2>
-          <div className="h-[1px] flex-1 bg-border" />
         </div>
 
         {/* Featured article */}
         {featured && (
-          <div className="mb-6">
+          <div className="mb-8">
             <ArticleCard {...featured} featured />
           </div>
         )}
@@ -39,8 +38,9 @@ export default function Home() {
         )}
 
         {posts.length === 0 && (
-          <div className="border border-border bg-navy p-12 text-center">
+          <div className="card-futuristic p-12 text-center">
             <p className="font-mono text-sm text-dim">
+              <span className="text-cyan/40">&gt; </span>
               Investigations incoming. Watch this space.
             </p>
           </div>
@@ -49,19 +49,18 @@ export default function Home() {
 
       {/* Topics strip */}
       {categories.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 pb-16">
-          <div className="mb-6 flex items-center gap-4">
-            <h2 className="font-mono text-[10px] uppercase tracking-[3px] text-dim">
-              Browse by Topic
+        <section className="mx-auto max-w-7xl px-6 pb-16">
+          <div className="section-label">
+            <h2 className="font-mono text-[9px] uppercase tracking-[4px] text-cyan/60">
+              <span className="text-cyan/30">// </span>Browse by Topic
             </h2>
-            <div className="h-[1px] flex-1 bg-border" />
           </div>
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <Link
                 key={cat}
                 href={`/topics#${cat.toLowerCase().replace(/\s+/g, "-")}`}
-                className="border border-border bg-navy px-4 py-2 font-mono text-[11px] uppercase tracking-[2px] text-muted transition-colors hover:border-blue/30 hover:text-blue"
+                className="tag-cyber"
               >
                 {cat}
               </Link>
@@ -71,12 +70,18 @@ export default function Home() {
       )}
 
       {/* Tip Line CTA */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="flex flex-col items-center gap-4 border-t border-border pt-12 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[3px] text-dim">
-            Got a tip?
-          </p>
-          <h2 className="font-serif text-2xl font-bold text-light">
+      <section className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="card-futuristic flex flex-col items-center gap-5 p-12 text-center">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-red" />
+            </span>
+            <p className="font-mono text-[9px] uppercase tracking-[4px] text-red/80">
+              Secure Channel
+            </p>
+          </div>
+          <h2 className="font-heading text-2xl font-bold text-light">
             Know something the public should see?
           </h2>
           <p className="max-w-md text-sm text-muted">
@@ -84,7 +89,7 @@ export default function Home() {
           </p>
           <Link
             href="/tips"
-            className="mt-2 border border-blue bg-blue/10 px-6 py-3 font-mono text-[11px] uppercase tracking-[2px] text-blue transition-colors hover:bg-blue hover:text-white"
+            className="mt-2 border border-cyan px-8 py-3 font-mono text-[11px] uppercase tracking-[3px] text-cyan transition-all hover:bg-cyan hover:text-dark hover:shadow-[0_0_30px_rgba(0,240,255,0.3)]"
           >
             Submit a Tip
           </Link>
